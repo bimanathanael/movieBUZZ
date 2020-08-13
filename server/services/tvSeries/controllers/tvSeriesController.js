@@ -6,6 +6,11 @@ class tvSeriesController{
     return res.status(200).json(allSeries)
   }
 
+  static async getOne (req, res) {
+    const series = await tvSeries.getOne(req.params.id)
+    return res.status(200).json(series)
+  }
+
   static async add (req, res) {
     const newOne = { ... req.body}
     const addOne = await tvSeries.addOne(newOne)
@@ -20,7 +25,7 @@ class tvSeriesController{
 
   static async delete (req, res) {
     const doDelete = await tvSeries.delete(req.params.id)
-    return res.status(200).json(doDelete)
+    return res.status(200).json(doDelete.value)
   }
 }
 

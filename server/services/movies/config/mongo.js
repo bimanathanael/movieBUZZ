@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient
 
-const dbName = process.env.dbName || 'entertainMe'
+const dbName = process.env.dbName || 'MovieDB'
 const url = process.env.URL || 'mongodb://127.0.0.1:27017/'
 
 const client = new MongoClient(url, {useUnifiedTopology: true})

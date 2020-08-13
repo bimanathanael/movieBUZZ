@@ -7,6 +7,10 @@ class Movie {
     return MovieColls.find().toArray()
   }
 
+  static getOne(id) {
+    return MovieColls.findOne({ "_id": ObjectId(id)})
+  }
+
   static addOne(newOne) {
     return MovieColls.insertOne(newOne)
   }

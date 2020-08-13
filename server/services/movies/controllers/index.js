@@ -6,6 +6,11 @@ class moviesController{
     return res.status(200).json(allMovie)
   }
 
+  static async getOne (req, res) {
+    const movie = await Movie.getOne(req.params.id)
+    return res.status(200).json(movie)
+  }
+
   static async add (req, res) {
     const newOne = { ... req.body}
     const addOne = await Movie.addOne(newOne)
@@ -20,7 +25,7 @@ class moviesController{
 
   static async delete (req, res) {
     const doDelete = await Movie.delete(req.params.id)
-    return res.status(200).json(doDelete)
+    return res.status(200).json(doDelete.value)
   }
 }
 

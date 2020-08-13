@@ -7,6 +7,10 @@ class TVSeries {
     return TVSeriesColls.find().toArray()
   }
 
+  static getOne(id) {
+    return TVSeriesColls.findOne({ "_id": ObjectId(id)})
+  }
+
   static addOne(newOne) {
     return TVSeriesColls.insertOne(newOne)
   }

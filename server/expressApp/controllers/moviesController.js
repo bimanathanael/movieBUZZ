@@ -1,4 +1,4 @@
-const Movie = require('../models/Movie')
+const Movie = require('../models')
 
 class moviesController{
   static async getAll (req, res) {
@@ -6,33 +6,26 @@ class moviesController{
     return res.status(200).json(allMovie)
   }
 
+  static async getOne (req, res) {
+    const movie = await Movie.getOne(req.params.id)
+    return res.status(200).json(movie)
+  }
+
   static async add (req, res) {
-    const newOne = {
-      title: req.body.title,
-      overview: req.body.overview,
-      poster_path: req.body.poster_path,
-      popularity: Number((+req.body.popularity).toFixed(1)),
-      tags: req.body.tags.split(','),
-    }
+    const newOne = { ... req.body}
     const addOne = await Movie.addOne(newOne)
-    return res.status(201).json(addOne)
+    return res.status(201).json(addOne.ops[0])
   }
 
   static async update( req, res) {
-    const updateData = {
-      title: req.body.title,
-      overview: req.body.overview,
-      poster_path: req.body.poster_path,
-      popularity: Number((+req.body.popularity).toFixed(1)),
-      tags: req.body.tags.split(','),
-    }
+    const updateData = { ... req.body}
     const doUpdate = await Movie.update(req.params.id, updateData)
-    return res.status(200).json(doUpdate)
+    return res.status(200).json(doUpdate.value)
   }
 
   static async delete (req, res) {
     const doDelete = await Movie.delete(req.params.id)
-    return res.status(200).json(doDelete)
+    return res.status(200).json(doDelete.value)
   }
 }
 
