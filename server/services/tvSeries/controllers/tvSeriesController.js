@@ -20,7 +20,7 @@ class tvSeriesController{
   static async update( req, res) {
     const updateData = { ... req.body}
     const doUpdate = await tvSeries.update(req.params.id, updateData)
-    return res.status(200).json(doUpdate)
+    return res.status(200).json(doUpdate.value)
   }
 
   static async delete (req, res) {
