@@ -3,7 +3,8 @@ const tvSeries = require('../models/TVSeries')
 class tvSeriesController{
   static async getAll (req, res) {
     const allSeries = await tvSeries.getAll()
-    return res.status(200).json(allSeries)
+    const displaySeries = allSeries.filter(series => series._id != null)
+    return res.status(200).json(displaySeries)
   }
 
   static async getOne (req, res) {

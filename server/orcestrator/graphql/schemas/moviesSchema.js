@@ -50,7 +50,6 @@ const resolvers = {
         } 
         const allMovies = await axios.get(apiMovieUrl)
         await redis.set("movies", JSON.stringify(allMovies.data))
-        console.log(allMovies.data, 'allMovies.data')
         return allMovies.data
       } catch (error) {
         return error
@@ -60,11 +59,9 @@ const resolvers = {
       const allMoviesRedis = await redis.get("movies")
       try {
         if(allMoviesRedis){
-          console.log(JSON.parse(allMoviesRedis))
           const selectedMovie = JSON.parse(allMoviesRedis).filter(movie => movie._id == args._id) 
           return selectedMovie[0]
         } 
-        console.log(args._id, 'args')
         const selectedMovie = await axios.get(`${apiMovieUrl}/${args._id}`)
         return selectedMovie.data
       } catch (error) {
@@ -74,7 +71,6 @@ const resolvers = {
   },
   Mutation: {
     addMovie: async (_,args) => {
-      console.log(args.movie,'body')
       const movie = await axios.post(apiMovieUrl,args.movie)
       const allMoviesRedis = await redis.get("movies")
       const newData = JSON.parse(allMoviesRedis).concat(movie.data)
