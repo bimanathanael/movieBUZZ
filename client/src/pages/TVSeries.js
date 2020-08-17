@@ -25,10 +25,10 @@ export const TVSeries = () => {
       <h1 className="text-white mb-5" style={{fontSize:23}}> Trending Movies</h1>
       <div className="row">
       {
-        data.allTVSeries.map( series => {
+        data.allTVSeries.map( (series, idx) => {
           return (
-            <div className="col-3" key={series._id}> 
-              <Card data={series} path={pathname}/>
+            <div className="col-3" key={idx}> 
+              <Card data={series} key={series._id} path={pathname}/>
             </div>
             )
         })

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import React from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import { ProSidebar, Menu, MenuItem, SubMenu , SidebarHeader,
   SidebarContent,
   SidebarFooter,} from 'react-pro-sidebar';
@@ -8,9 +8,7 @@ import { BsCollectionPlay, BsFilm, BsHouseDoorFill } from 'react-icons/bs';
 import { FaGithub } from 'react-icons/fa';
 
 
-
 export const Nav = () => {
-  const [toggle, setToggle] = useState(false)
   const {pathname} = useLocation()
 
   const styles = {
@@ -34,10 +32,7 @@ export const Nav = () => {
   return (
     <>
     <ProSidebar  
-      collapsed={toggle}
-      toggled={toggle}
       breakPoint="md"
-      onToggle={toggle}
       style={{backgroundColor: '#18243e', backgroundColor: 'transparent', fontFamily: 'Roboto Condensed'}}  
     >
       <SidebarHeader>
@@ -64,6 +59,11 @@ export const Nav = () => {
               TVSeries
             </NavLink>
           </MenuItem>
+          <MenuItem icon={<BsCollectionPlay/>} style={pathname =='/favorites' ? styles.activeLink : null}>
+            <NavLink className="text-white" to='/favorites' style={{backgroundColor: 'transparent'}}>
+              Favorites
+            </NavLink>
+          </MenuItem>
         </Menu>
       </SidebarContent>
       <SidebarFooter>
@@ -74,7 +74,7 @@ export const Nav = () => {
           }}
         >
           <a
-            href="https://github.com/azouaoui-med/react-pro-sidebar"
+            href="https://github.com/bimanathanael/entertainme"
             target="_blank"
             className="sidebar-btn"
             rel="noopener noreferrer"

@@ -42,7 +42,7 @@ export const Home = () => {
           })
         }
       </div>
-      <hr style={{backgroundColor: 'white'}}/>
+      <hr style={{backgroundColor: 'red'}}/>
       
       <h1 className="text-white mb-3  mt-5" style={{fontSize:23}}> Trending TV Series</h1>
       <div className="row">

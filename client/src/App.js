@@ -13,6 +13,7 @@ import {TVSeries} from './pages/TVSeries'
 import {Details} from './pages/Details'
 import {AddMovie} from './pages/AddMovie'
 import {UpdateMovie} from './pages/UpdateMovie'
+import {Favorites} from './pages/Favorites'
 import {Nav} from './components/Nav'
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
                 <Route exact path="/movies" component={Movies} />
                 <Route exact path="/tvseries" component={TVSeries} />
                 <Route exact path="/addMovie" component={AddMovie} />
+                <Route exact path="/favorites" component={Favorites} />
                 <Route path="/tvseries/details/:id" component={Details} />
                 <Route path="/movies/details/:id" component={Details} />
                 <Route path="/movies/update/:id" component={UpdateMovie} />

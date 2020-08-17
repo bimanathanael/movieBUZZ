@@ -1,11 +1,12 @@
 import '../Card.css';
 import React from 'react'
-import { Link, useHistory} from 'react-router-dom'
+import { Link, useHistory, useLocation} from 'react-router-dom'
 import { AiFillTags , AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 export const Card = ({data, path}) => {
   const history = useHistory()
-  
+  const {pathname} = useLocation()
+
   let stars = []
   let popularity = Math.ceil(data.popularity)
   
@@ -58,9 +59,11 @@ export const Card = ({data, path}) => {
   }
 
   const toDetails = () => {
-    history.push({
-      pathname: `${path}/details/${data._id}`
-    })
+    // if(pathname != '/favorites'){
+      history.push({
+        pathname: `${path}/details/${data._id}`
+      })
+    // }
   }
 
   return (
@@ -70,13 +73,13 @@ export const Card = ({data, path}) => {
           <img src={data.poster_path} className="card-img-top" style={styles.img}/>
           <p style={styles.popularity} className="text-center"> 
             {
-              stars.map ( tag => {              
-                return <AiFillStar color="#f1c40f"/> 
+              stars.map ( (star, idx) => {              
+                return <AiFillStar key={idx} color="#f1c40f"/> 
               })
             }
             {
-              emtpyStars.map ( tag => {              
-                return <AiOutlineStar color="#ecf0f1"/> 
+              emtpyStars.map ( (star, index) => {              
+                return <AiOutlineStar key={index} color="#ecf0f1"/> 
               })
             }
           </p>

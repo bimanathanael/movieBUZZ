@@ -91,7 +91,7 @@ export const UpdateMovie = () => {
       <br/>
       <form onSubmit={ (e) => doUpdate(e)}>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Title</label>
+          <label className="col-sm-2 col-form-label text-white">Title</label>
           <div className="col-sm-10">
             <input type="text" name="title" className="form-control" id="inputTitle" placeholder="enter title.." 
             onChange={ (e) => onHandleChange(e) }
@@ -99,7 +99,7 @@ export const UpdateMovie = () => {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Overview</label>
+          <label className="col-sm-2 col-form-label text-white">Overview</label>
           <div className="col-sm-10">
             <input type="text"  name="overview" className="form-control" id="inputOverview" placeholder="enter overview.." 
             onChange={ (e) => onHandleChange(e) }
@@ -107,7 +107,7 @@ export const UpdateMovie = () => {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Poster Path</label>
+          <label className="col-sm-2 col-form-label text-white">Poster Path</label>
           <div className="col-sm-10">
             <input type="text"  name="poster_path" className="form-control" id="inputPoster" placeholder="enter poster link.." 
             onChange={ (e) => onHandleChange(e) }
@@ -115,7 +115,7 @@ export const UpdateMovie = () => {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Popularity</label>
+          <label className="col-sm-2 col-form-label text-white">Popularity</label>
           <div className="col-sm-10">
             <input type="text"  name="popularity" className="form-control" id="inputPopularity" placeholder="enter popularity.." 
             onChange={ (e) => onHandleChange(e) }
@@ -123,7 +123,7 @@ export const UpdateMovie = () => {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-2 col-form-label">Tags</label>
+          <label className="col-sm-2 col-form-label text-white">Tags</label>
           <div className="col-sm-3">
             <div className="form-check">
               {getUpdateMovie.tags.includes("thriller") ? 
@@ -131,7 +131,7 @@ export const UpdateMovie = () => {
                 :
                 <input onChange={ (e) => onHandleChange(e)} className="form-check-input" type="checkbox" name="tags" value="thriller" id="thriller" />
               }
-              <label htmlFor="thriller" className="form-check-label">
+              <label htmlFor="thriller" className="form-check-label text-white">
                 Thriller
               </label>
             </div>
@@ -141,7 +141,7 @@ export const UpdateMovie = () => {
                 :
                 <input onChange={ (e) => onHandleChange(e)} className="form-check-input" type="checkbox" name="tags" value="horror" id="horror" />
               }
-              <label htmlFor="horror" className="form-check-label">
+              <label htmlFor="horror" className="form-check-label text-white">
                 Horror
               </label>
             </div>
@@ -151,7 +151,7 @@ export const UpdateMovie = () => {
                 :
                 <input onChange={ (e) => onHandleChange(e)} className="form-check-input" type="checkbox" name="tags" value="animation" id="animation" />
               }
-              <label htmlFor="animation" className="form-check-label">
+              <label htmlFor="animation" className="form-check-label text-white">
                 Animation
               </label>
             </div>
@@ -163,7 +163,7 @@ export const UpdateMovie = () => {
                 :
                 <input onChange={ (e) => onHandleChange(e)} className="form-check-input" type="checkbox" name="tags" value="action" id="action" />
               }
-              <label htmlFor="action" className="form-check-label">
+              <label htmlFor="action" className="form-check-label text-white">
                 Action
               </label>
             </div>
@@ -173,7 +173,7 @@ export const UpdateMovie = () => {
                 :
                 <input onChange={ (e) => onHandleChange(e)} className="form-check-input" type="checkbox" name="tags" value="scify" id="scify" />
               }
-              <label htmlFor="scify" className="form-check-label">
+              <label htmlFor="scify" className="form-check-label text-white">
                 SciFY
               </label>
             </div>
@@ -183,7 +183,7 @@ export const UpdateMovie = () => {
                 :
                 <input onChange={ (e) => onHandleChange(e)} className="form-check-input" type="checkbox" name="tags" value="others" id="others" />
               }
-              <label htmlFor="others" className="form-check-label">
+              <label htmlFor="others" className="form-check-label text-white">
                 Others
               </label>
             </div>
@@ -195,7 +195,7 @@ export const UpdateMovie = () => {
                 :
                 <input onChange={ (e) => onHandleChange(e)} className="form-check-input" type="checkbox" name="tags" value="drama" id="drama" />
               }
-              <label htmlFor="drama" className="form-check-label">
+              <label htmlFor="drama" className="form-check-label text-white">
                 Drama
               </label>
             </div>
@@ -205,7 +205,7 @@ export const UpdateMovie = () => {
                 :
                 <input onChange={ (e) => onHandleChange(e)} className="form-check-input" type="checkbox" name="tags" value="romance" id="romance" />
               }
-              <label htmlFor="romance" className="form-check-label">
+              <label htmlFor="romance" className="form-check-label text-white">
                 Romance
               </label>
             </div>
@@ -215,7 +215,7 @@ export const UpdateMovie = () => {
                 :
                 <input onChange={ (e) => onHandleChange(e)} className="form-check-input" type="checkbox" name="tags" value="comedy" id="comedy" />
               }
-              <label htmlFor="comedy" className="form-check-label">
+              <label htmlFor="comedy" className="form-check-label text-white">
                 Comedy
               </label>
             </div>
