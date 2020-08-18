@@ -36,10 +36,10 @@ export const Nav = () => {
       style={{backgroundColor: '#18243e', backgroundColor: 'transparent', fontFamily: 'Roboto Condensed'}}  
     >
       <SidebarHeader>
-      <div
+        <div
           style={styles.sideBar}
         >
-          Entertain Me
+          <b>movie</b> <span style={{color: 'red'}}>buzz</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
