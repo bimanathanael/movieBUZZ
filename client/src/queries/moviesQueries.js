@@ -39,9 +39,6 @@ export const ADD_MOVIE = gql`
   }
 `
 
-// updateMovie(_id: String, movie: MovieInput): Movie
-
-
 export const UPDATE_MOVIE = gql`
   mutation ($id: String, $MovieInput: MovieInput) {
     updateMovie(_id: $id, movie: $MovieInput){

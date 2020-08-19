@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { GET_TVSERIES } from '../queries/tvSeriesQueries'
 import { useQuery } from '@apollo/client'
 import { Card } from '../components/Card'
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import 'react-pro-sidebar/dist/css/styles.css';
 
 
 export const TVSeries = () => {
   const {pathname} = useLocation()
-  const [toggle, setToggle] = useState(false)
-  
   const { loading, error, data } =  useQuery(GET_TVSERIES)
 
   if(loading){

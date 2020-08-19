@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { GET_MOVIES } from '../queries/moviesQueries'
 import { useQuery } from '@apollo/client'
 import { Card } from '../components/Card'
@@ -8,7 +8,6 @@ import 'react-pro-sidebar/dist/css/styles.css';
 
 export const Movies = () => {
   const {pathname} = useLocation()
-  
   const { loading, error, data } =  useQuery(GET_MOVIES)
 
   if(loading){
@@ -34,7 +33,7 @@ export const Movies = () => {
         data.movies.map( movie => {
           return (
             <div className="col-3" key={movie._id}> 
-              <Card data={movie} path={pathname}/>
+              <Card data={movie} path={pathname} key={movie._id}/>
             </div>
             )
           })

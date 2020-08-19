@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation } from '@apollo/client'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { GET_MOVIES, UPDATE_MOVIE, GET_ONE_MOVIE} from '../queries/moviesQueries'
 
 
 export const UpdateMovie = () => {
   
   const {id} = useParams()
+  const history = useHistory()
   const [getUpdateMovie, setUpdateMovie] = useState({
     title: "",
     overview: "",
@@ -45,13 +46,12 @@ export const UpdateMovie = () => {
 
   const doUpdate = (e) => {
     e.preventDefault()
-    
-    console.log(data.movie._id, 'data.movie._id')
-    console.log(getUpdateMovie, 'getUpdateMovie')
-
+  
     updateMovie({
       variables: { id : data.movie._id , MovieInput : getUpdateMovie }
     })
+
+    history.push('/movies')
   }
 
   const onHandleChange = (e) => {
@@ -93,7 +93,7 @@ export const UpdateMovie = () => {
         <div className="form-group row">
           <label className="col-sm-2 col-form-label text-white">Title</label>
           <div className="col-sm-10">
-            <input type="text" name="title" className="form-control" id="inputTitle" placeholder="enter title.." 
+            <input type="text" name="title" className="form-control" id="inputTitle" placeholder="enter title.." required="required"
             onChange={ (e) => onHandleChange(e) }
             value={getUpdateMovie.title}/>
           </div>
@@ -101,7 +101,7 @@ export const UpdateMovie = () => {
         <div className="form-group row">
           <label className="col-sm-2 col-form-label text-white">Overview</label>
           <div className="col-sm-10">
-            <input type="text"  name="overview" className="form-control" id="inputOverview" placeholder="enter overview.." 
+            <input type="text"  name="overview" className="form-control" id="inputOverview" placeholder="enter overview.." required="required"
             onChange={ (e) => onHandleChange(e) }
             value={getUpdateMovie.overview}/>
           </div>
@@ -109,7 +109,7 @@ export const UpdateMovie = () => {
         <div className="form-group row">
           <label className="col-sm-2 col-form-label text-white">Poster Path</label>
           <div className="col-sm-10">
-            <input type="text"  name="poster_path" className="form-control" id="inputPoster" placeholder="enter poster link.." 
+            <input type="text"  name="poster_path" className="form-control" id="inputPoster" placeholder="enter poster link.." required="required"
             onChange={ (e) => onHandleChange(e) }
             value={getUpdateMovie.poster_path}/>
           </div>
@@ -117,7 +117,7 @@ export const UpdateMovie = () => {
         <div className="form-group row">
           <label className="col-sm-2 col-form-label text-white">Popularity</label>
           <div className="col-sm-10">
-            <input type="text"  name="popularity" className="form-control" id="inputPopularity" placeholder="enter popularity.." 
+            <input type="text"  name="popularity" className="form-control" id="inputPopularity" placeholder="enter popularity.." required="required"
             onChange={ (e) => onHandleChange(e) }
             value={getUpdateMovie.popularity}/>
           </div>

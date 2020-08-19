@@ -1,6 +1,6 @@
 import '../Card.css';
 import React from 'react'
-import { Link, useHistory, useLocation} from 'react-router-dom'
+import { useHistory, useLocation} from 'react-router-dom'
 import { AiFillTags , AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 export const Card = ({data, path}) => {
@@ -16,7 +16,6 @@ export const Card = ({data, path}) => {
   }
   let emtpyStars = new Array(5-stars.length).fill('empty')
   
-
   const styles = {
     card: {
       backgroundColor: 'transparent',
@@ -53,24 +52,21 @@ export const Card = ({data, path}) => {
       backgroundColor: '#d35400' , 
       borderColor: '#d35400', 
       color: "white",
-      // borderLeft: '8px groove #27ae60',
-      // borderRight: '8px groove #27ae60'
     }
   }
 
   const toDetails = () => {
-    // if(pathname != '/favorites'){
-      history.push({
-        pathname: `${path}/details/${data._id}`
-      })
-    // }
+    history.push({
+      pathname: `${path}/details/${data._id}`,
+      fromFav: pathname === '/favorites' ? true : false
+    })
   }
 
   return (
     <>
       <div className="card" style={styles.card} onClick={() => toDetails()}>
         <div style={{overflow: 'hidden', padding:'25px', paddingBottom: 0}}>
-          <img src={data.poster_path} className="card-img-top" style={styles.img}/>
+          <img src={data.poster_path} className="card-img-top" style={styles.img} alt={data.title}/>
           <p style={styles.popularity} className="text-center"> 
             {
               stars.map ( (star, idx) => {              
@@ -92,7 +88,7 @@ export const Card = ({data, path}) => {
               return (
                 <>
                   <span style={styles.tagBox}><AiFillTags/> {`${tag}`} &nbsp;</span>
-                  { (idx+1) % 3 == 0 ? <><br style={{lineHeight:'22px'}}/><br/></> : null }
+                  { (idx+1) % 3 === 0 ? <><br style={{lineHeight:'22px'}}/><br/></> : null }
                 </>
               )
             })

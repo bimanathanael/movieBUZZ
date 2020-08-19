@@ -26,7 +26,6 @@ export const GET_ONE_TVSERIES = gql`
   }
 `
 
-
 export const DELETE_TVSERIES = gql`
   mutation ($selectedId: String) {
     deleteSeries(_id: $selectedId){

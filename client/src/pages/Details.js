@@ -11,14 +11,13 @@ import { RiStarSmileLine } from 'react-icons/ri'
 
 
 export const Details = () => {
-  
   const {id} = useParams()
-  const {pathname} = useLocation()
-  
-  const { loading, data } =  useQuery(
-    pathname.includes('/movies') ? GET_ONE_MOVIE : GET_ONE_TVSERIES
-  , { variables: { selectedId: id }})
+  const history = useHistory()
+  const location = useLocation()
 
+  const { loading, data } =  useQuery(
+    location.pathname.includes('/movies') ? GET_ONE_MOVIE : GET_ONE_TVSERIES
+  , { variables: { selectedId: id }})
 
   const [deleteMovie] = useMutation(DELETE_MOVIE, 
     {
@@ -27,8 +26,6 @@ export const Details = () => {
       }]
     }
   );
-  
-    const history = useHistory()
 
   const doDeleteMovie = () => {
     deleteMovie({ variables: { selectedId: data.movie._id} })
@@ -40,25 +37,39 @@ export const Details = () => {
       query: GET_FAVORITES
     })
 
-    console.log(data.movie)
     client.writeQuery({
       query: GET_FAVORITES,
       data: {
         favorites: currentFav.concat(data.movie)
       }
     })
+    history.push('/favorites')
+  }
+
+  const removeFromFav = (selectedId) => {
+    const  { favorites : currentFav } = client.readQuery({
+      query: GET_FAVORITES
+    })
+
+    client.writeQuery({
+      query: GET_FAVORITES,
+      data: {
+        favorites: currentFav.filter( fav => fav._id !== selectedId)
+      }
+    })
+    history.push('/favorites')
   }
 
   if(loading){
     return <p> please wait ..</p>
   }
 
-  if(pathname.includes('/movies')){
+  if(location.pathname.includes('/movies')){
     return (
       <>
         <div className="row mt-5 ml-4" >
           <div className="col-4">
-              <img src={data.movie.poster_path} className="card-img-top" style={{width:400, boxShadow: '1px 2px 30px 8px rgba(0,0,0,0.61)'}} />
+              <img src={data.movie.poster_path} className="card-img-top" style={{width:400, boxShadow: '1px 2px 30px 8px rgba(0,0,0,0.61)'}} alt={data.movie.title} />
           </div>
           <div className="col-6" >
             <div className="card"  style={{backgroundColor: "transparent",borderRight: '12px #021e47 inset'}}>
@@ -76,13 +87,21 @@ export const Details = () => {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-8">
-                    <button className="btn btn-light mr-4 font-weight-bold" onClick={() => addToFav() } > <GiSelfLove style={{marginBottom:'2px'}}/> Fav this ! </button>
-                    <Link className="btn btn-info mr-4 font-weight-bold" to={`/movies/update/${data.movie._id}`}> <FaRegSave style={{marginBottom:'3px'}}/> Update </Link>
-                  </div>
-                  <div className="col-4 text-right">
-                    <button className="btn btn-danger mr-4 font-weight-bold" onClick={() => doDeleteMovie() }> <FaRegTrashAlt style={{marginBottom:'3px'}}/> Delete </button>
-                  </div>
+                  {location.fromFav ? 
+                    <div className="col-8">
+                      <button className="btn btn-danger mr-4 font-weight-bold" onClick={() => removeFromFav(data.movie._id) } > <GiSelfLove style={{marginBottom:'2px'}}/> Remove from Fav </button>
+                    </div>
+                  :
+                    <>
+                      <div className="col-8">
+                        <button className="btn btn-light mr-4 font-weight-bold" onClick={() => addToFav() } > <GiSelfLove style={{marginBottom:'2px'}}/> Fav this ! </button>
+                        <Link className="btn btn-info mr-4 font-weight-bold" to={`/movies/update/${data.movie._id}`}> <FaRegSave style={{marginBottom:'3px'}}/> Update </Link>
+                      </div>
+                      <div className="col-4 text-right">
+                        <button className="btn btn-danger mr-4 font-weight-bold" onClick={() => doDeleteMovie() }> <FaRegTrashAlt style={{marginBottom:'3px'}}/> Delete </button>
+                      </div>
+                    </>
+                  }
                 </div>
               </div>
             </div>
@@ -95,7 +114,7 @@ export const Details = () => {
       <>
         <div className="row mt-5 ml-4" >
           <div className="col-4">
-              <img src={data.tvSeries.poster_path} className="card-img-top" style={{width:400, boxShadow: '1px 2px 30px 8px rgba(0,0,0,0.61)'}} />
+              <img src={data.tvSeries.poster_path} className="card-img-top" style={{width:400, boxShadow: '1px 2px 30px 8px rgba(0,0,0,0.61)'}} img={data.tvSeries.title} />
           </div>
           <div className="col-6" >
             <div className="card"  style={{backgroundColor: "transparent",borderRight: '12px #021e47 inset'}}>

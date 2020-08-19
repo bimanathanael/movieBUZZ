@@ -2,10 +2,9 @@ import React from 'react'
 import { GET_ALL } from '../queries/generalQueries'
 import { useQuery } from '@apollo/client'
 import { Card } from '../components/Card'
-import { useLocation, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export const Home = () => {
-  
   const { loading, error, data } =  useQuery(GET_ALL)
 
   if(loading){

@@ -1,8 +1,5 @@
-import React, { useState } from 'react'
-import { GET_MOVIES } from '../queries/moviesQueries'
-import { useQuery } from '@apollo/client'
+import React from 'react'
 import { Card } from '../components/Card'
-import { useLocation,Link } from 'react-router-dom'
 import 'react-pro-sidebar/dist/css/styles.css';
 import { client } from '../config/client'
 import { GET_FAVORITES } from '../queries/favoriteQueries'
