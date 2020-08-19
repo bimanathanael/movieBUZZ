@@ -1,7 +1,7 @@
 const express = require ('express')
 const app = express()
 const route = require('./routes')
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT || 4010
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
